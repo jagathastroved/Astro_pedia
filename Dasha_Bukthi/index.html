@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dasa Bhukti Report — Astrological Planetary Insights</title>
+  <meta name="description"
+    content="Discover your current major and minor planetary period report with interactive nested timelines and personalized astrological insights." />
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+  <div class="app-container">
+
+    <!-- Header & Navigation -->
+    <header class="header-nav">
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">
+          <div class="logo-icon">✦</div>
+          <span class="logo-text">Astro<span class="primary-gradient-text">Ved</span></span>
+        </a>
+
+        <nav id="main-nav">
+          <ul class="nav-links" id="nav-links">
+            <li><a href="#about-section">About Dasa–Bhukti</a></li>
+            <li><a href="#birth-form-section">Birth Details</a></li>
+            <li><a href="#report-results-section">Current Period</a></li>
+            <li><a href="#timeline-section">Timeline</a></li>
+            <li><a href="#faq-section">FAQ</a></li>
+            <!-- Mobile-only actions inside the drawer -->
+            <li class="mobile-only-cta">
+              <a href="#birth-form-section" class="btn-primary" style="width:100%; justify-content:center;">Get My
+                Report</a>
+            </li>
+          </ul>
+        </nav>
+
+        <div class="nav-right-actions">
+          <!-- Light / Dark Mode Toggle Button -->
+          <button id="theme-toggle-btn" class="theme-toggle-btn" aria-label="Toggle Theme Mode"
+            title="Toggle Light / Dark Theme">
+            🌙
+          </button>
+          <a href="#birth-form-section" class="btn-primary desktop-only-cta">Get My Report</a>
+
+          <!-- Hamburger toggle, visible on tablet/mobile only -->
+          <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Open Menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+      <!-- Backdrop for mobile drawer -->
+      <div id="nav-backdrop" class="nav-backdrop"></div>
+    </header>
+
+    <!-- 1. Hero Section -->
+    <section class="hero-section" id="hero">
+      <!-- Animated Background elements for Hero -->
+      <div class="hero-bg-glow glow-1"></div>
+      <div class="hero-bg-glow glow-2"></div>
+
+      <div class="hero-content">
+        <!-- Top Badge -->
+        <div class="hero-badge fade-in-up" style="animation-delay: 0.1s;">
+          <span class="badge-sparkle">✦</span> DISCOVER THE POWER OF VEDIC ASTROLOGY
+        </div>
+
+        <!-- Main Title -->
+        <h1 class="hero-title fade-in-up" style="animation-delay: 0.2s;">
+          Unlock Your <br />
+          <span class="title-gold-gradient">Dasa–Bhukti</span> Timeline
+        </h1>
+
+        <!-- Decorative lotus flourish -->
+        <div class="hero-flourish fade-in-up" style="animation-delay: 0.25s;">
+          <div class="flourish-line"></div>
+          <i data-lucide="flower-2" width="16" height="16" style="color: #f59e0b; flex-shrink: 0;"></i>
+          <div class="flourish-line"></div>
+        </div>
+
+        <!-- Subtitle -->
+        <p class="hero-subtitle fade-in-up" style="animation-delay: 0.3s;">
+          Navigate your life's journey with the guidance of planetary cycles. Discover how the current Dasa and Bhukti
+          periods shape your career, wealth, relationships and destiny.
+        </p>
+
+        <!-- 4 Feature Badges Grid -->
+        <div class="hero-features-grid fade-in-up" style="animation-delay: 0.35s;">
+          <div class="hero-feature-card">
+            <div class="hero-feature-circle">
+              <i data-lucide="heart" width="18" height="18"></i>
+            </div>
+            <span>Better Life Decisions</span>
+          </div>
+
+          <div class="hero-feature-card">
+            <div class="hero-feature-circle">
+              <i data-lucide="trending-up" width="18" height="18"></i>
+            </div>
+            <span>Career & Wealth Growth</span>
+          </div>
+
+          <div class="hero-feature-card">
+            <div class="hero-feature-circle">
+              <i data-lucide="users" width="18" height="18"></i>
+            </div>
+            <span>Harmony in Relationships</span>
+          </div>
+
+          <div class="hero-feature-card">
+            <div class="hero-feature-circle">
+              <i data-lucide="sparkles" width="18" height="18"></i>
+            </div>
+            <span>Spiritual Progress</span>
+          </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="hero-actions fade-in-up" style="animation-delay: 0.4s;">
+          <a href="#birth-form-section" class="btn-hero-glow-purple">
+            <i data-lucide="sparkles" width="16" height="16"></i>
+            <span>GENERATE MY REPORT</span>
+            <span class="arrow">→</span>
+          </a>
+
+          <a href="#about-section" class="btn-hero-glass-outline">
+            <i data-lucide="play-circle" width="16" height="16"></i>
+            <span>EXPLORE THE SCIENCE</span>
+          </a>
+        </div>
+
+        <!-- Trust Indicators -->
+        <div class="hero-trust-indicators fade-in-up" style="animation-delay: 0.45s;">
+          <div class="avatars">
+            <img class="avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Seeker Profile 1" />
+            <img class="avatar" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Seeker Profile 2" />
+            <img class="avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="Seeker Profile 3" />
+          </div>
+          <span class="trust-text">Trusted by 10,000+ seekers worldwide</span>
+          <span class="trust-stars">★★★★★</span>
+        </div>
+      </div>
+
+      <!-- Hero Image Visual -->
+      <div class="hero-image-wrapper fade-in-up" style="animation-delay: 0.3s;">
+        <img src="hero-wheel.png" alt="Astrological Wheel" class="hero-img-fluid" />
+      </div>
+    </section>
+
+    <!-- 2. About Dasa–Bhukti Section -->
+    <section class="section-padding" id="about-section">
+      <div class="about-card">
+        <div class="about-card-inner">
+          <div class="about-info"
+            style="display: flex; flex-direction: column; align-items: flex-start; text-align: left;">
+            <span class="badge-tag" style="margin-bottom: 1rem;">✦ Wisdom of Vedic Cycles</span>
+            <h2 class="section-heading primary-gradient-text" style="margin-bottom: 1rem; line-height: 1.3;">
+              Understanding Dasa & Bhukti</h2>
+
+            <div class="about-text-content">
+              <p>
+                Dasa represents the broad, macro-themes of your life based on planetary cycles, while Bhukti reveals the
+                specific, short-term chapters within it. Together, these celestial blueprints help pinpoint the exact
+                timing of significant events across your health, wealth, career, and relationships.
+              </p>
+              <p style="margin-top: 0.5rem;">
+                By understanding your current planetary periods, you can make informed decisions and align your actions
+                with the natural cosmic rhythm, maximizing opportunities and mitigating challenges.
+              </p>
+            </div>
+          </div>
+
+          <div class="about-grid-features">
+            <div class="feature-box">
+              <div class="feature-icon"><i data-lucide="moon" width="20" height="20"></i></div>
+              <div class="feature-text">
+                <div class="feature-title">Moon Star</div>
+                <div class="feature-desc">Calculated precisely from Nakshatra at birth.</div>
+              </div>
+            </div>
+            <div class="feature-box">
+              <div class="feature-icon"><i data-lucide="sun" width="20" height="20"></i></div>
+              <div class="feature-text">
+                <div class="feature-title">Major (Dasa)</div>
+                <div class="feature-desc">Macro-themes spanning up to 20 years.</div>
+              </div>
+            </div>
+            <div class="feature-box">
+              <div class="feature-icon"><i data-lucide="star" width="20" height="20"></i></div>
+              <div class="feature-text">
+                <div class="feature-title">Minor (Bhukti)</div>
+                <div class="feature-desc">Focused 1 to 3 year chapters.</div>
+              </div>
+            </div>
+            <div class="feature-box">
+              <div class="feature-icon"><i data-lucide="compass" width="20" height="20"></i></div>
+              <div class="feature-text">
+                <div class="feature-title">Life Guidance</div>
+                <div class="feature-desc">Empowers timing for career & wealth.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Birth Details Form & 4. Action Cards -->
+    <section class="section-padding" id="birth-form-section">
+      <div class="form-card">
+        <div class="form-card-inner" style="display: grid; grid-template-columns: 1fr 1.5fr; gap: 0;">
+
+          <!-- Left side: Midnight Mystical Banner -->
+          <div class="form-banner"
+            style="background: linear-gradient(135deg, #0f172a, #2e1065); padding: 3rem 2.5rem; color: white; display: flex; flex-direction: column; justify-content: flex-start; text-align: left; position: relative; overflow: hidden;">
+            <!-- Decorative celestial rings -->
+            <div
+              style="position: absolute; top: -100px; right: -50px; width: 300px; height: 300px; border: 2px solid rgba(251, 191, 36, 0.1); border-radius: 50%;">
+            </div>
+            <div
+              style="position: absolute; top: -60px; right: -10px; width: 220px; height: 220px; border: 1px solid rgba(251, 191, 36, 0.2); border-radius: 50%;">
+            </div>
+            <div
+              style="position: absolute; top: -20px; right: 30px; width: 140px; height: 140px; background: radial-gradient(circle, rgba(251, 191, 36, 0.15) 0%, transparent 70%); border-radius: 50%;">
+            </div>
+
+            <div class="badge-tag"
+              style="margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.4rem; background: rgba(251, 191, 36, 0.15); color: #fbbf24; border: 1px solid rgba(251, 191, 36, 0.3);">
+              ✦ Precision Vedic Calculations</div>
+            <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.85rem;">
+              <i data-lucide="compass" width="32" height="32"
+                style="color: #fbbf24; filter: drop-shadow(0 0 10px rgba(251,191,36,0.5)); flex-shrink: 0;"></i>
+              <h3
+                style="font-size: 1.8rem; font-weight: 700; line-height: 1.15; color: #ffffff; white-space: nowrap; margin: 0;">
+                Cosmic <span
+                  style="background: linear-gradient(135deg, #fbbf24, #f59e0b); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Alignment</span>
+              </h3>
+            </div>
+            <p
+              style="color: #94a3b8; font-size: 1.05rem; line-height: 1.7; font-weight: 400; margin-top: 0.75rem; margin-bottom: 1.75rem;">
+              Discover the precise planetary influences currently shaping your journey across wealth, career, health,
+              and relationships.
+            </p>
+            <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.85rem;">
+              <li style="display: flex; align-items: center; gap: 0.75rem; color: #cbd5e1; font-size: 0.95rem;">
+                <i data-lucide="check-circle" width="18" height="18" style="color: #fbbf24; flex-shrink: 0;"></i>
+                <span>Accurate Dasa-Bhukti timeline generation</span>
+              </li>
+              <li style="display: flex; align-items: center; gap: 0.75rem; color: #cbd5e1; font-size: 0.95rem;">
+                <i data-lucide="check-circle" width="18" height="18" style="color: #fbbf24; flex-shrink: 0;"></i>
+                <span>Personalized career and wealth forecasts</span>
+              </li>
+              <li style="display: flex; align-items: center; gap: 0.75rem; color: #cbd5e1; font-size: 0.95rem;">
+                <i data-lucide="check-circle" width="18" height="18" style="color: #fbbf24; flex-shrink: 0;"></i>
+                <span>Remedies for challenging planetary periods</span>
+              </li>
+              <li style="display: flex; align-items: center; gap: 0.75rem; color: #cbd5e1; font-size: 0.95rem;">
+                <i data-lucide="check-circle" width="18" height="18" style="color: #fbbf24; flex-shrink: 0;"></i>
+                <span>100% confidential birth chart analysis</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Right side: Sleek Modern Form -->
+          <div class="form-content"
+            style="padding: 3rem 2.5rem; background: #ffffff; display: flex; flex-direction: column; justify-content: flex-start;">
+            <div class="form-card-header" style="text-align: left; margin-bottom: 1.75rem;">
+              <span class="badge-tag"
+                style="margin-bottom: 1rem; display: inline-flex; align-items: center; gap: 0.4rem;">✦ Birth Details
+                Entry</span>
+              <h2 class="section-heading"
+                style="font-size: 1.8rem; font-weight: 700; color: #0f172a; margin-bottom: 0.25rem;">Birth Information
+              </h2>
+              <p style="color: #64748b; font-size: 0.95rem;">Please ensure all details are precise.</p>
+            </div>
+            <form id="birth-details-form" novalidate>
+              <div class="form-grid" style="gap: 2rem 1.5rem;">
+                <div class="form-group">
+                  <label class="form-label" for="birth-date"
+                    style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #64748b; margin-bottom: -0.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <i data-lucide="calendar" width="16" height="16"></i> <span>Birth Date <span class="required-mark"
+                        style="color: #ef4444;">*</span></span>
+                  </label>
+                  <input type="date" id="birth-date" class="form-input"
+                    style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1rem 1.2rem; font-weight: 500; color: #0f172a; transition: all 0.3s ease; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); width: 100%; box-sizing: border-box;"
+                    value="1995-08-15" required />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="birth-time"
+                    style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #64748b; margin-bottom: -0.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <i data-lucide="clock" width="16" height="16"></i> <span>Birth Time <span class="required-mark"
+                        style="color: #ef4444;">*</span></span>
+                  </label>
+                  <input type="time" id="birth-time" class="form-input"
+                    style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1rem 1.2rem; font-weight: 500; color: #0f172a; transition: all 0.3s ease; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); width: 100%; box-sizing: border-box;"
+                    value="09:15" required />
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="birth-country"
+                    style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #64748b; margin-bottom: -0.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <i data-lucide="globe" width="16" height="16"></i> <span>Birth Country <span class="required-mark"
+                        style="color: #ef4444;">*</span></span>
+                  </label>
+                  <select id="birth-country" class="form-select"
+                    style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1rem 1.2rem; font-weight: 500; color: #0f172a; transition: all 0.3s ease; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); width: 100%; box-sizing: border-box;"
+                    required>
+                    <option value="India" selected>India</option>
+                    <option value="United States">United States</option>
+                    <option value="United Kingdom">United Kingdom</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Australia">Australia</option>
+                    <option value="Singapore">Singapore</option>
+                  </select>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="birth-location"
+                    style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #64748b; margin-bottom: -0.25rem; display: flex; align-items: center; gap: 0.5rem;">
+                    <i data-lucide="map-pin" width="16" height="16"></i> <span>Birth City <span class="required-mark"
+                        style="color: #ef4444;">*</span></span>
+                  </label>
+                  <input type="text" id="birth-location" class="form-input"
+                    style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 1rem 1.2rem; font-weight: 500; color: #0f172a; transition: all 0.3s ease; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); width: 100%; box-sizing: border-box;"
+                    value="Chennai, Tamil Nadu" required />
+                </div>
+
+                <div class="form-actions" style="margin-top: 1.5rem; justify-content: flex-start; grid-column: 1 / -1;">
+                  <button type="submit" id="form-submit-btn" class="btn-primary"
+                    style="width: 100%; background: linear-gradient(135deg, #0f172a, #2e1065); border-radius: 12px; padding: 1.1rem; font-weight: 700; letter-spacing: 0.05em; font-size: 0.95rem; box-shadow: 0 10px 25px rgba(46, 16, 101, 0.3);">
+                    Generate My Cosmic Report
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Action Cards -->
+      <div class="action-cards-grid">
+        <div class="action-card">
+          <div>
+            <div class="action-card-title">
+              <span class="action-card-icon">✦</span> What Does This Period Mean for Me?
+            </div>
+            <p class="action-card-desc">
+              Understand how your current Dasa–Bhukti period shapes career, wealth, health, and relationships.
+            </p>
+          </div>
+          <a href="#report-results-section" class="action-card-btn">Explore Insights →</a>
+        </div>
+
+        <div class="action-card">
+          <div>
+            <div class="action-card-title">
+              <span class="action-card-icon">✦</span> Check the Planetary Homas
+            </div>
+            <p class="action-card-desc">
+              Balance planetary influences with prescribed Vedic remedies, mantras, and homas.
+            </p>
+          </div>
+          <a href="#insights-section" class="action-card-btn">View Remedies →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Report Banner & Results -->
+    <div id="report-results-section">
+
+      <div class="report-banner">
+        <div>
+          <span class="badge-tag">✦ Your Personalized Report</span>
+          <h2 class="banner-heading primary-gradient-text">
+            ✨ Personalized Current Major & Minor Planetary Period Report
+          </h2>
+          <p class="banner-subtitle">
+            Based on your birth parameters, these are the active planetary cycles in your birth chart.
+          </p>
+        </div>
+        <a href="#timeline-section" class="btn-primary report-banner-btn">Get Report Now</a>
+      </div>
+
+      <div class="summary-card">
+        <span class="badge-tag">✦ Chart Summary</span>
+        <h3 class="summary-heading primary-gradient-text">Birth Parameters</h3>
+        <div class="summary-grid">
+          <div class="summary-item">
+            <div class="summary-label">Birth Date</div>
+            <div class="summary-value" id="summary-date">August 15, 1995</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Birth Time</div>
+            <div class="summary-value" id="summary-time">09:15 AM</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Location</div>
+            <div class="summary-value" id="summary-location">Chennai</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Country</div>
+            <div class="summary-value" id="summary-country">India</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Moon Sign</div>
+            <div class="summary-value">Gemini (Mithuna)</div>
+          </div>
+          <div class="summary-item">
+            <div class="summary-label">Birth Star</div>
+            <div class="summary-value">Punarvasu</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. Current Dasa & Bhukti Cards -->
+      <div class="current-periods-grid">
+
+        <div class="period-card dasa">
+          <div>
+            <span class="badge-tag period-badge-dasa">Major Period</span>
+            <div class="period-desc">You are currently running the major period of</div>
+            <div class="planet-title-large">Jupiter</div>
+          </div>
+          <div class="date-box">
+            <div class="date-line"><span>From:</span> <strong>Dec 19, 2017</strong></div>
+            <div class="date-line"><span>To:</span> <strong>Dec 18, 2033</strong></div>
+          </div>
+        </div>
+
+        <div class="period-card bhukti">
+          <div>
+            <span class="badge-tag period-badge-bhukti">Minor Period</span>
+            <div class="period-desc">You are currently running the minor period of</div>
+            <div class="planet-title-large">Venus</div>
+          </div>
+          <div class="date-box">
+            <div class="date-line"><span>From:</span> <strong>Nov 1, 2025</strong></div>
+            <div class="date-line"><span>To:</span> <strong>Jul 1, 2028</strong></div>
+          </div>
+
+          <div>
+            <div class="countdown-label">
+              ⏳ Time Remaining in Venus Bhukti:
+            </div>
+            <div class="countdown-grid">
+              <div class="count-block">
+                <div class="count-num" id="count-days">708</div>
+                <div class="count-lbl">Days</div>
+              </div>
+              <div class="count-block">
+                <div class="count-num" id="count-hours">18</div>
+                <div class="count-lbl">Hours</div>
+              </div>
+              <div class="count-block">
+                <div class="count-num" id="count-mins">42</div>
+                <div class="count-lbl">Mins</div>
+              </div>
+              <div class="count-block">
+                <div class="count-num" id="count-secs">15</div>
+                <div class="count-lbl">Secs</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 7. & 8. Interactive Nested Accordion Timeline -->
+      <section class="section-padding" id="timeline-section">
+        <div class="section-header-center">
+          <span class="badge-tag">✦ Interactive Timeline</span>
+          <h2 class="section-heading primary-gradient-text">Duration of Planetary Influence Period</h2>
+          <p class="section-note">
+            <strong>Note:</strong> Highlighted rows indicate your active planetary period.<br />
+            <strong>Major (Dasa) → Minor (Bhukti) → Sub-Minor (Antara) Planetary Period</strong>
+          </p>
+        </div>
+
+        <div id="nested-timeline-accordion" class="nested-accordion-wrapper"></div>
+      </section>
+
+      <!-- 9. Remedial Insights -->
+      <section class="section-padding" id="insights-section">
+        <div class="section-header-center">
+          <span class="badge-tag">✦ Remedial Insights</span>
+          <h2 class="section-heading primary-gradient-text">Planetary Attributes & Remedial Guidance</h2>
+        </div>
+
+        <div class="insights-grid">
+          <div class="summary-card insight-card-indigo">
+            <div class="insight-card-title insight-title-indigo">Jupiter (Guru) Guidance</div>
+            <ul class="insight-list">
+              <li><strong>Mantra:</strong> Om Gram Greem Groum Sah Gurave Namah</li>
+              <li><strong>Gemstone:</strong> Yellow Sapphire (Pukhraj)</li>
+              <li><strong>Lucky Color / Day:</strong> Yellow / Thursday</li>
+              <li><strong>Remedy:</strong> Brihaspati Homa for Wisdom & Prosperity</li>
+            </ul>
+          </div>
+
+          <div class="summary-card insight-card-orange">
+            <div class="insight-card-title insight-title-orange">Venus (Shukra) Guidance</div>
+            <ul class="insight-list">
+              <li><strong>Mantra:</strong> Om Dram Dreem Droum Sah Shukraya Namah</li>
+              <li><strong>Gemstone:</strong> Diamond / Zircon</li>
+              <li><strong>Lucky Color / Day:</strong> White / Friday</li>
+              <li><strong>Remedy:</strong> Shukra Homa for Harmony & Joy</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- 10. FAQ Section -->
+    <section class="section-padding" id="faq-section">
+      <div class="section-header-center">
+        <span class="badge-tag">✦ Knowledge Base</span>
+        <h2 class="section-heading primary-gradient-text">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq-grid">
+        <div class="faq-item">
+          <div class="faq-question"><span>What is Dasa?</span><span>▼</span></div>
+          <div class="faq-answer">Dasa is a major planetary period in Vedic Astrology that unfolds based on the Moon’s
+            Nakshatra position at birth.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><span>What is Bhukti?</span><span>▼</span></div>
+          <div class="faq-answer">Bhukti is a sub-period within a major Dasa that specifies focused events over 1 to 3
+            years.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question"><span>How are planetary periods calculated?</span><span>▼</span></div>
+          <div class="faq-answer">Calculations follow the 120-year Vimshottari Dasa cycle starting from your birth
+            Nakshatra degree.</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer-site">
+    <div class="app-container">
+      <div class="footer-grid">
+        <div>
+          <a href="#" class="brand-logo">
+            <div class="logo-icon">✦</div>
+            <span class="logo-text">Astro<span class="primary-gradient-text">Dasa</span></span>
+          </a>
+          <p class="footer-tagline">
+            Empowering your life journey with precise Vedic planetary calculations and interactive timelines.
+          </p>
+        </div>
+        <div>
+          <div class="footer-col-title">Quick Links</div>
+          <ul class="footer-links">
+            <li><a href="#about-section">About Dasa–Bhukti</a></li>
+            <li><a href="#birth-form-section">Birth Details Form</a></li>
+            <li><a href="#timeline-section">Timeline</a></li>
+            <li><a href="#faq-section">FAQ</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="#insights-section">Planetary Homas</a></li>
+            <li><a href="#insights-section">Gemstones</a></li>
+            <li><a href="#timeline-section">Vimshottari Chart</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Legal</div>
+          <ul class="footer-links">
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 AstroDasa Platform. All rights reserved.</div>
+        <div>Styled with Indigo #6868f9 & Orange #f97316.</div>
+      </div>
+    </div>
+  </footer>
+
+  <button id="back-to-top-btn" class="back-to-top" aria-label="Back to top">↑</button>
+
+  <script src="script.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+
+</html>
