@@ -87,10 +87,8 @@ function initMobileNav() {
 
   if (backdrop) backdrop.addEventListener('click', closeMenu);
 
-  // Close the drawer whenever a nav link is tapped
   navLinks.forEach(link => link.addEventListener('click', closeMenu));
 
-  // Close the drawer automatically if the viewport is resized back to desktop
   window.addEventListener('resize', () => {
     if (window.innerWidth > 860) closeMenu();
   });
