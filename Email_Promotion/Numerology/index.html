@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numerology Email Promo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            background-color: #e8e8e8;
+            padding: 20px;
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-up {
+            opacity: 0;
+            animation: fadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.5s; }
+        .delay-6 { animation-delay: 0.6s; }
+
+        .interactive-btn {
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .interactive-btn:hover {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0px 12px 28px rgba(45, 18, 77, 0.25);
+        }
+        
+        .interactive-btn:active {
+            transform: translateY(1px) scale(0.98);
+        }
+
+        /* numerology-email-promo */
+        .numerology-email-promo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 48px 40px 64px;
+            gap: 40px;
+            position: relative;
+            width: 600px;
+            min-height: 1400px;
+            background: #FDFBFF;
+            box-sizing: border-box;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0px 20px 40px rgba(0,0,0,0.05);
+        }
+
+        /* header-section */
+        .header-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0px;
+            gap: 24px;
+            width: 300px;
+        }
+
+        /* urgency-badge */
+        .urgency-badge {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 16px;
+            height: 27px;
+            background: #F6F2FB;
+            border: 1px solid #EBE3FD;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        /* urgency-text */
+        .urgency-text {
+            font-family: 'Manrope', sans-serif;
+            font-style: normal;
+            font-weight: 800;
+            font-size: 11px;
+            line-height: 15px;
+            text-transform: uppercase;
+            color: #2D124D;
+        }
+
+        /* main-title */
+        .main-title {
+            width: 300px;
+            font-family: 'Fraunces', serif;
+            font-style: normal;
+            font-weight: 900;
+            font-size: 32px;
+            line-height: 120%;
+            text-align: center;
+            color: #1D0B33;
+            margin: 0;
+        }
+
+        /* sub-title */
+        .sub-title {
+            width: 300px;
+            font-family: 'Manrope', sans-serif;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 22px;
+            text-align: center;
+            color: #635378;
+            margin: 0;
+        }
+
+        /* primary-cta-container */
+        .primary-cta-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 36px;
+            background: #2D124D;
+            box-shadow: 0px 8px 24px rgba(45, 18, 77, 0.2);
+            border-radius: 12px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        /* cta-text */
+        .cta-text {
+            font-family: 'Manrope', sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 22px;
+            color: #FFFFFF;
+            white-space: nowrap;
+        }
+
+        /* benefits-section */
+        .benefits-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0px;
+            gap: 20px;
+            width: 520px;
+        }
+
+        /* benefits-title */
+        .benefits-title {
+            width: 520px;
+            font-family: 'Fraunces', serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 25px;
+            text-align: center;
+            color: #1D0B33;
+            margin: 0;
+        }
+
+        /* benefits-stack */
+        .benefits-stack {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0px;
+            gap: 12px;
+            width: 520px;
+        }
+
+        /* benefit-card */
+        .benefit-card {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 20px 24px;
+            gap: 16px;
+            width: 520px;
+            height: 84px;
+            background: #FFFFFF;
+            border: 1px solid #EBE3FD;
+            box-shadow: 0px 4px 16px rgba(45, 18, 77, 0.0588235);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0px 8px 24px rgba(45, 18, 77, 0.1);
+            border-color: #D1C4E9;
+        }
+
+        /* check-icon-container */
+        .check-icon-container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 32px;
+            height: 32px;
+            background: #EAF7EE;
+            border-radius: 16px;
+            flex-shrink: 0;
+        }
+
+        .check-icon {
+            width: 16px;
+            height: 16px;
+            color: #279D53;
+        }
+
+        /* benefit-card-text */
+        .benefit-card-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0px;
+            gap: 4px;
+            flex-grow: 1;
+        }
+
+        /* benefit-title */
+        .benefit-title {
+            font-family: 'Manrope', sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 22px;
+            color: #1D0B33;
+            margin: 0;
+        }
+
+        /* benefit-subtitle */
+        .benefit-subtitle {
+            font-family: 'Manrope', sans-serif;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 18px;
+            color: #635378;
+            margin: 0;
+        }
+
+        /* benefits-cta */
+        .benefits-cta {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            border: 2px solid #2D124D;
+            border-radius: 8px;
+            cursor: pointer;
+            text-decoration: none;
+            background: transparent;
+        }
+
+        .benefits-cta:hover {
+            background: #F6F2FB;
+        }
+
+        /* benefits-cta-text */
+        .benefits-cta-text {
+            font-family: 'Manrope', sans-serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 14px;
+            line-height: 19px;
+            color: #2D124D;
+            white-space: nowrap;
+        }
+
+        /* discount-section */
+        .discount-section {
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 16px 24px;
+            gap: 12px;
+            width: 520px;
+            height: 54px;
+            background: #FDF6EC;
+            border: 1px solid #E2A93E;
+            border-radius: 12px;
+            animation: pulse-border 2s infinite;
+        }
+        
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(226, 169, 62, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(226, 169, 62, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(226, 169, 62, 0); }
+        }
+
+        .sparkle-icon {
+            width: 20px;
+            height: 20px;
+            color: #E2A93E;
+        }
+
+        /* discount-text */
+        .discount-text {
+            font-family: 'Manrope', sans-serif;
+            font-style: normal;
+            font-weight: 800;
+            font-size: 16px;
+            line-height: 22px;
+            text-align: center;
+            text-transform: uppercase;
+            color: #2D124D;
+        }
+
+        /* premium-upgrade-section */
+        .premium-upgrade-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 32px;
+            gap: 24px;
+            width: 520px;
+            background: #2D124D;
+            border-radius: 24px;
+            box-sizing: border-box;
+        }
+
+        /* premium-header */
+        .premium-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+        }
+
+        /* unlock-badge */
+        .unlock-badge {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .lock-icon {
+            width: 12px;
+            height: 12px;
+            color: #E2A93E;
+        }
+
+        /* unlock-label */
+        .unlock-label {
+            font-family: 'Manrope', sans-serif;
+            font-style: normal;
+            font-weight: 800;
+            font-size: 11px;
+            line-height: 15px;
+            text-transform: uppercase;
+            color: #E2A93E;
+        }
+
+        /* premium-title */
+        .premium-title {
+            font-family: 'Fraunces', serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 24px;
+            line-height: 30px;
+            text-align: center;
+            color: #FFFFFF;
+            margin: 0;
+        }
+
+        /* features-list */
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+            width: 100%;
+        }
+
+        /* premium-feature-item */
+        .premium-feature-item {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            transition: transform 0.2s ease;
+        }
+        
+        .premium-feature-item:hover {
+            transform: translateX(5px);
+        }
+
+        .premium-sparkle {
+            width: 16px;
+            height: 16px;
+            color: #E2A93E;
+        }
+
+        /* feature-text */
+        .feature-text {
+            font-family: 'Manrope', sans-serif;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 15px;
+            line-height: 20px;
+            color: #FFFFFF;
+        }
+
+        /* premium-cta */
+        .premium-cta {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            padding: 14px 36px;
+            background: #E2A93E;
+            border-radius: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* premium-cta-text */
+        .premium-cta-text {
+            font-family: 'Manrope', sans-serif;
+            font-style: normal;
+            font-weight: 800;
+            font-size: 16px;
+            line-height: 22px;
+            color: #2D124D;
+            white-space: nowrap;
+        }
+
+        /* footer-cta-section */
+        .footer-cta-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            width: 520px;
+        }
+
+        /* final-cta */
+        .final-cta {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            width: 100%;
+        }
+
+        /* final-cta-text */
+        .final-cta-text {
+            font-family: 'Fraunces', serif;
+            font-style: normal;
+            font-weight: 700;
+            font-size: 22px;
+            line-height: 27px;
+            text-align: center;
+            color: #1D0B33;
+            margin: 0;
+        }
+
+        /* final-cta-subtext */
+        .final-cta-subtext {
+            font-family: 'Manrope', sans-serif;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 19px;
+            text-align: center;
+            color: #635378;
+            margin: 0;
+        }
+
+        /* ps-urgency */
+        .ps-urgency {
+            font-family: 'Manrope', sans-serif;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 16px;
+            text-align: center;
+            color: #635378;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="numerology-email-promo">
+        
+        <!-- header-section -->
+        <div class="header-section animate-up">
+            <div class="urgency-badge">
+                <span class="urgency-text">6 AUGUST 2026 - YOUR REPORT IS READY</span>
+            </div>
+            <h1 class="main-title">Hello Jagath,<br>your AI<br>Numerology<br>Report is<br>Ready</h1>
+            <p class="sub-title">Personalized based on your birth details</p>
+            <a href="https://www.astroved.com/numerology-report/" class="primary-cta-container interactive-btn">
+                <span class="cta-text">View My Report</span>
+            </a>
+        </div>
+
+        <!-- benefits-section -->
+        <div class="benefits-section animate-up delay-1">
+            <h2 class="benefits-title">Your report reveals in 5 minutes:</h2>
+            <div class="benefits-stack">
+                
+                <!-- Benefit 1 -->
+                <div class="benefit-card">
+                    <div class="check-icon-container">
+                        <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <div class="benefit-card-text">
+                        <p class="benefit-title">Life Path & Destiny Numbers</p>
+                        <p class="benefit-subtitle">Your core personality traits and life purpose &rarr;</p>
+                    </div>
+                </div>
+
+                <!-- Benefit 2 -->
+                <div class="benefit-card">
+                    <div class="check-icon-container">
+                        <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <div class="benefit-card-text">
+                        <p class="benefit-title">Lucky Numbers & Colors</p>
+                        <p class="benefit-subtitle">Best days, numbers, and colors for decisions &rarr;</p>
+                    </div>
+                </div>
+
+                <!-- Benefit 3 -->
+                <div class="benefit-card">
+                    <div class="check-icon-container">
+                        <svg class="check-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    </div>
+                    <div class="benefit-card-text">
+                        <p class="benefit-title">Career & Relationship Insights</p>
+                        <p class="benefit-subtitle">Guidance on work, love, and compatibility &rarr;</p>
+                    </div>
+                </div>
+
+            </div>
+            
+            <a href="https://www.astroved.com/numerology-report/" class="benefits-cta interactive-btn">
+                <span class="benefits-cta-text">Show Me My Report</span>
+            </a>
+        </div>
+
+        <!-- discount-section -->
+        <div class="discount-section animate-up delay-2">
+            <svg class="sparkle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7z"></path></svg>
+            <span class="discount-text">FLAT 25% OFF TODAY</span>
+            <svg class="sparkle-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 2l3 7 7 3-7 3-3 7-3-7-7-3 7-3 3-7z"></path></svg>
+        </div>
+
+        <!-- premium-upgrade-section -->
+        <div class="premium-upgrade-section animate-up delay-3">
+            <div class="premium-header">
+                <div class="unlock-badge">
+                    <svg class="lock-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    <span class="unlock-label">UNLOCK YOUR COMPLETE REPORT</span>
+                </div>
+                <h2 class="premium-title">Go Premium & Deepen Your Journey</h2>
+            </div>
+            
+            <div class="features-list">
+                <div class="premium-feature-item">
+                    <svg class="premium-sparkle" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="feature-text">Detailed predictions for the next 12 months</span>
+                </div>
+                <div class="premium-feature-item">
+                    <svg class="premium-sparkle" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="feature-text">In-depth career, job, and business analysis</span>
+                </div>
+                <div class="premium-feature-item">
+                    <svg class="premium-sparkle" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="feature-text">Marriage compatibility & partner traits</span>
+                </div>
+                <div class="premium-feature-item">
+                    <svg class="premium-sparkle" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="feature-text">Wealth, savings, and investment forecasts</span>
+                </div>
+                <div class="premium-feature-item">
+                    <svg class="premium-sparkle" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="feature-text">Health warnings and high-vitality periods</span>
+                </div>
+                <div class="premium-feature-item">
+                    <svg class="premium-sparkle" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <span class="feature-text">Personalized cosmic remedies & gemstones</span>
+                </div>
+            </div>
+
+            <a href="https://www.astroved.com/numerology-report/" class="premium-cta interactive-btn">
+                <span class="premium-cta-text">Unlock Premium</span>
+            </a>
+        </div>
+
+        <!-- footer-cta-section -->
+        <div class="footer-cta-section animate-up delay-4">
+            <div class="final-cta">
+                <h2 class="final-cta-text">Get My Full Report Now</h2>
+                <p class="final-cta-subtext">Instant access &middot; PDF download &middot; 100% personalized</p>
+            </div>
+            <p class="ps-urgency">P.S. Your personalized data links expire in 48 hours. Generate your safe PDF backup today.</p>
+        </div>
+
+    </div>
+
+</body>
+</html>

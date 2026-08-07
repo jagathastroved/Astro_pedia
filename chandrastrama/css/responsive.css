@@ -1,0 +1,61 @@
+/* Responsive Adjustments */
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: var(--spacing-lg) 0;
+  }
+  
+  .hero-content {
+    padding-right: 0;
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  .grid-cols-2, .grid-cols-3 {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Collapse ladder timeline on mobile */
+  .ladder-timeline::before {
+    left: 20px;
+    transform: none;
+  }
+  
+  .ladder-item {
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 0;
+  }
+  
+  .ladder-item:nth-child(odd),
+  .ladder-item:nth-child(even) {
+    left: 0;
+    text-align: left;
+  }
+  
+  .ladder-item:nth-child(odd)::after,
+  .ladder-item:nth-child(even)::after {
+    left: 10px;
+    right: auto;
+  }
+  
+  .form-control {
+    font-size: 16px; /* Prevents iOS zoom */
+  }
+  
+  /* Sticky calculate button on mobile */
+  .mobile-sticky-btn {
+    position: fixed;
+    bottom: var(--spacing-md);
+    left: var(--spacing-md);
+    right: var(--spacing-md);
+    width: calc(100% - var(--spacing-lg));
+    z-index: 50;
+    box-shadow: 0 10px 30px rgba(124, 58, 237, 0.4);
+  }
+}

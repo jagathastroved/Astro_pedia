@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Chandrashtama Calculator</title>
+  
+  <meta name="description" content="Calculate your Chandrashtama dates for free. A premium astrology tool to find out your safe and active phases.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Icons (Feather Icons via CDN for lightweight SVG icons) -->
+  <script src="https://unpkg.com/feather-icons"></script>
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/animations.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+  
+  <div class="container">
+    <!-- Hero Section -->
+    <section class="hero reveal">
+      <div class="hero-content">
+        <h1 class="animate-fade-up">Free Chandrashtama Calculator</h1>
+        <p class="animate-fade-up delay-100" style="color: var(--text-light); font-size: 1.125rem; margin-bottom: 2rem;">
+          Discover your lunar vulnerable phases with precision. Plan your important events around your Chandrashtama days using our premium calculation engine.
+        </p>
+        <button class="btn btn-primary animate-fade-up delay-200" onclick="document.getElementById('calculator').scrollIntoView({behavior: 'smooth'})">
+          Calculate Now <i data-feather="arrow-down"></i>
+        </button>
+      </div>
+      <div class="hero-image animate-fade-up delay-300">
+        <!-- We will replace this with a generated image or generic svg -->
+        <div class="animate-float" style="width: 300px; height: 300px; border-radius: 50%; background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(91, 75, 255, 0.1)); display: flex; align-items: center; justify-content: center; position: relative;">
+            <i data-feather="moon" style="width: 100px; height: 100px; color: var(--primary);"></i>
+            <div style="position: absolute; width: 100%; height: 100%; border-radius: 50%; box-shadow: 0 0 40px var(--primary-glow); z-index: -1;"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Calculator Form Section -->
+    <section id="calculator" class="reveal delay-100" style="margin-bottom: var(--spacing-xl);">
+      <div class="glass-card">
+        <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">Enter Birth Details</h2>
+        <form id="calc-form">
+          <div class="grid-cols-2">
+            <div class="form-group">
+              <input type="text" id="name" class="form-control" placeholder=" " required>
+              <label for="name" class="form-label">Full Name</label>
+              <i data-feather="user" class="input-icon"></i>
+            </div>
+            <div class="form-group">
+              <input type="date" id="dob" class="form-control" placeholder=" " required>
+              <label for="dob" class="form-label">Date of Birth</label>
+              <i data-feather="calendar" class="input-icon"></i>
+            </div>
+            <div class="form-group">
+              <input type="time" id="tob" class="form-control" placeholder=" " required>
+              <label for="tob" class="form-label">Time of Birth</label>
+              <i data-feather="clock" class="input-icon"></i>
+            </div>
+            <div class="form-group">
+              <input type="text" id="city" class="form-control" placeholder=" " required>
+              <label for="city" class="form-label">Birth City</label>
+              <i data-feather="map-pin" class="input-icon"></i>
+            </div>
+          </div>
+          <div style="text-align: center; margin-top: var(--spacing-md);">
+             <button type="submit" class="btn btn-primary" style="width: 100%; max-width: 300px; height: 50px;">
+               <span id="btn-text">Generate Report</span>
+               <i id="btn-icon" data-feather="zap"></i>
+             </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Skeleton Loader -->
+    <section id="skeleton-loader" style="display: none; margin-bottom: var(--spacing-xl);">
+       <div class="glass-card" style="padding: 2rem;">
+         <div class="skeleton" style="height: 40px; width: 60%; margin-bottom: 2rem; margin-inline: auto;"></div>
+         <div class="grid-cols-3" style="margin-bottom: 2rem;">
+            <div class="skeleton" style="height: 100px;"></div>
+            <div class="skeleton" style="height: 100px;"></div>
+            <div class="skeleton" style="height: 100px;"></div>
+         </div>
+         <div class="skeleton" style="height: 200px;"></div>
+       </div>
+    </section>
+
+    <!-- Result Section -->
+    <section id="result-section" class="reveal">
+      <!-- Auto Birth Info -->
+      <div class="glass-card" style="margin-bottom: var(--spacing-lg);">
+         <h3 style="margin-bottom: var(--spacing-md);">Birth Details Summary</h3>
+         <div class="grid-cols-3" id="birth-info-grid">
+           <!-- Populated by JS -->
+         </div>
+      </div>
+
+      <!-- Chandrashtama Summary -->
+      <div class="grid-cols-3" style="margin-bottom: var(--spacing-lg);">
+        <div class="glass-card stat-card">
+           <h4 style="color: var(--text-light); font-weight: 500;">Current Status</h4>
+           <div class="stat-value status-safe" id="current-status">Safe</div>
+           <p style="font-size: 0.85rem; color: var(--text-light);">No active Chandrashtama</p>
+        </div>
+        <div class="glass-card stat-card">
+           <h4 style="color: var(--text-light); font-weight: 500;">Next Chandrashtama</h4>
+           <div class="stat-value" style="color: var(--accent);" id="next-date">---</div>
+           <p style="font-size: 0.85rem; color: var(--text-light);">Starts in <span id="days-left">0</span> days</p>
+        </div>
+        <div class="glass-card stat-card">
+           <h4 style="color: var(--text-light); font-weight: 500;">Total This Year</h4>
+           <div class="stat-value" style="color: var(--primary);" id="total-count">12</div>
+           <p style="font-size: 0.85rem; color: var(--text-light);">Periods expected</p>
+        </div>
+      </div>
+
+      <!-- Monthly Timeline -->
+      <div class="glass-card" style="margin-bottom: var(--spacing-lg);">
+         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md); flex-wrap: wrap; gap: 1rem;">
+           <h3 style="margin-bottom: 0;">Monthly Timeline</h3>
+           <div class="form-group" style="margin-bottom: 0; min-width: 200px;">
+             <input type="text" id="month-search" class="form-control" placeholder="Search Month..." style="padding: 0.5rem 1rem 0.5rem 2.5rem;">
+             <i data-feather="search" class="input-icon" style="top: 50%;"></i>
+           </div>
+         </div>
+         
+         <div class="ladder-timeline" id="timeline-container">
+           <!-- Populated by JS -->
+         </div>
+      </div>
+      
+      <!-- Export Bar -->
+      <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-bottom: var(--spacing-xl);">
+         <button class="btn btn-outline" onclick="window.print()">
+           <i data-feather="printer"></i> Print
+         </button>
+         <button class="btn btn-primary">
+           <i data-feather="download"></i> Download PDF
+         </button>
+      </div>
+    </section>
+
+    <!-- Notes & FAQ -->
+    <section class="reveal grid-cols-2" style="margin-bottom: var(--spacing-xl); gap: var(--spacing-lg);">
+      <div>
+        <h3 style="margin-bottom: var(--spacing-md);">Important Notes</h3>
+        <div class="glass-card" style="margin-bottom: 1rem; border-left: 4px solid var(--accent);">
+           <div style="display: flex; gap: 1rem; align-items: flex-start;">
+             <i data-feather="alert-circle" style="color: var(--accent); flex-shrink: 0;"></i>
+             <p style="margin: 0; font-size: 0.9rem;">Avoid taking major life decisions or starting new ventures during your Chandrashtama period.</p>
+           </div>
+        </div>
+        <div class="glass-card" style="border-left: 4px solid var(--success);">
+           <div style="display: flex; gap: 1rem; align-items: flex-start;">
+             <i data-feather="check-circle" style="color: var(--success); flex-shrink: 0;"></i>
+             <p style="margin: 0; font-size: 0.9rem;">It is a good time for spiritual practices, meditation, and routine work.</p>
+           </div>
+        </div>
+      </div>
+      
+      <div>
+        <h3 style="margin-bottom: var(--spacing-md);">FAQ</h3>
+        <div class="glass-card">
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>What is Chandrashtama?</span>
+              <i data-feather="chevron-down" class="chevron"></i>
+            </div>
+            <div class="accordion-content">
+              <p>Chandrashtama occurs when the Moon transits the 8th house from your natal Moon sign (Rasi). It usually lasts for about 2.25 days every month.</p>
+            </div>
+          </div>
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Why is it considered vulnerable?</span>
+              <i data-feather="chevron-down" class="chevron"></i>
+            </div>
+            <div class="accordion-content">
+              <p>The 8th house represents obstacles and sudden changes. When the mind (Moon) passes through this house, one may feel stressed or prone to misunderstandings.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p style="color: var(--text-light); font-size: 0.9rem;">&copy; 2026 Premium Astrology. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    feather.replace();
+  </script>
+</body>
+</html>
