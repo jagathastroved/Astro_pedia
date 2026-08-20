@@ -1,0 +1,108 @@
+/* Initial States */
+.reveal, .reveal-left, .reveal-right, .scale-in {
+    opacity: 0;
+    will-change: transform, opacity;
+}
+
+.reveal {
+    transform: translateY(30px);
+}
+
+.reveal-left {
+    transform: translateX(-30px);
+}
+
+.reveal-right {
+    transform: translateX(30px);
+}
+
+.scale-in {
+    transform: scale(0.95);
+}
+
+/* Visible States */
+.is-visible.reveal {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.is-visible.reveal-left {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.is-visible.reveal-right {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.is-visible.scale-in {
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+/* Continuous Animations */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; filter: brightness(1.1); }
+}
+
+.float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.glow {
+    animation: glowPulse 5s ease-in-out infinite;
+}
+
+/* Particle system (basic CSS implementation) */
+.particle-container {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.particle {
+    position: absolute;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(200,138,67,0) 70%);
+    border-radius: 50%;
+    opacity: 0;
+}
+
+/* Staggering delays for grids */
+.delay-100 { transition-delay: 100ms; }
+.delay-200 { transition-delay: 200ms; }
+.delay-300 { transition-delay: 300ms; }
+.delay-400 { transition-delay: 400ms; }
+.delay-500 { transition-delay: 500ms; }
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    
+    .reveal, .reveal-left, .reveal-right, .scale-in {
+        opacity: 1;
+        transform: none;
+    }
+    
+    .hero-image-wrapper:hover .deity-img {
+        transform: none;
+    }
+}

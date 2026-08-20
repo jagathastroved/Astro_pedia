@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacred Homa</title>
+    <meta name="description" content="Participate in our sacred Homa ceremonies for spiritual well-being.">
+    <link rel="canonical" href="">
+    <meta property="og:title" content="Sacred Homa">
+    <meta property="og:description" content="Participate in our sacred Homa ceremonies for spiritual well-being.">
+    <meta property="og:image" content="">
+    <meta property="og:type" content="website">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <!-- Google Fonts: Inter and Playfair Display (Premium feel) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Main Content Container -->
+    <main id="app-container" class="opacity-0 transition-opacity">
+        <!-- Hero Section -->
+        <section id="hero" class="hero-section" aria-label="Hero">
+            <div class="hero-bg"></div>
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div id="hero-label" class="occasion-label reveal-left"></div>
+                    <h1 id="hero-title" class="hero-title reveal"></h1>
+                    <p id="hero-subtitle" class="hero-subtitle reveal"></p>
+                    
+                    <div class="hero-meta reveal">
+                        <div class="meta-item">
+                            <span class="icon">📍</span>
+                            <span id="hero-temple"></span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="icon">📅</span>
+                            <span id="hero-date"></span>
+                        </div>
+                    </div>
+
+                    <div class="hero-trust reveal">
+                        <span id="hero-rating" class="rating-stars">★★★★★ 4.9+</span>
+                        <span id="hero-devotees" class="devotees-count"></span>
+                    </div>
+                    
+                    <div class="hero-actions reveal">
+                        <a href="#packages" class="btn btn-primary" id="hero-cta-btn">Participate Now</a>
+                        <button class="btn btn-outline" id="hero-video-btn"><span class="icon">▶</span> Watch Video</button>
+                    </div>
+                </div>
+                
+                <div class="hero-visual reveal-right">
+                    <div class="hero-image-wrapper">
+                        <img id="hero-deity-img" src="" alt="Deity" class="deity-img" fetchpriority="high">
+                        <!-- Floating elements -->
+                        <div class="particle-container" aria-hidden="true"></div>
+                    </div>
+                    
+                    <!-- Countdown Card -->
+                    <div class="countdown-card scale-in">
+                        <p class="countdown-label">Puja booking will close in</p>
+                        <div id="countdown-timer" class="countdown-timer">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust Strip Section -->
+        <section id="trust-strip" class="trust-strip-section" aria-label="Trust Factors">
+            <div class="container">
+                <div class="trust-grid" id="trust-grid-container">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Participate (Benefits) Section -->
+        <section id="why-participate" class="why-participate-section section-padding bg-cream" aria-label="Why Participate">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Why Participate in <span class="dynamic-homa-name"></span>?</h2>
+                    <p class="section-subtitle" id="benefits-subtitle"></p>
+                </div>
+                <div class="benefits-grid" id="benefits-container">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Sacred Benefits (Homa Benefits) Section -->
+        <section id="homa-benefits" class="homa-benefits-section section-padding" aria-label="Sacred Benefits">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Sacred Benefits of the Homa</h2>
+                </div>
+                <div class="homa-benefits-list" id="homa-benefits-container">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section section-padding bg-cream" aria-label="About this Homa">
+            <div class="container about-container">
+                <div class="about-content reveal-left">
+                    <h2 class="section-title" id="about-title"></h2>
+                    <p class="about-description" id="about-description"></p>
+                    <ul class="about-points" id="about-points">
+                        <!-- Populated by JS -->
+                    </ul>
+                </div>
+                <div class="about-visual reveal-right">
+                    <div class="image-frame-gold">
+                        <img id="about-image" src="" alt="About Homa" loading="lazy">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sacred Occasion Section -->
+        <section id="occasion" class="occasion-section section-padding" aria-label="Special Occasion">
+            <div class="container">
+                <div class="occasion-card reveal scale-in">
+                    <div class="occasion-icon">🌸</div>
+                    <h2 class="section-title" id="occasion-title"></h2>
+                    <p class="occasion-desc" id="occasion-desc"></p>
+                    <div class="occasion-highlights" id="occasion-highlights">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ritual Process Section -->
+        <section id="ritual-process" class="ritual-section section-padding bg-cream" aria-label="Ritual Process">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Simple Process to Participate</h2>
+                </div>
+                <div class="process-timeline" id="process-timeline">
+                    <!-- Populated by JS -->
+                </div>
+                <div class="mobile-process-more" id="mobile-process-more" style="display: none;">
+                    <button class="btn btn-text" id="show-more-process">Read More ↓</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Temple Section -->
+        <section id="temple" class="temple-section section-padding" aria-label="Temple Information">
+            <div class="container temple-container">
+                <div class="temple-visual reveal-left">
+                    <img id="temple-image" src="" alt="Temple" loading="lazy" class="temple-img">
+                </div>
+                <div class="temple-content reveal-right">
+                    <span class="overline">Sacred Kshetra</span>
+                    <h2 class="section-title" id="temple-name"></h2>
+                    <p class="temple-location">📍 <span id="temple-location-text"></span></p>
+                    <p class="temple-description" id="temple-desc"></p>
+                    <div class="temple-highlights" id="temple-highlights">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Your Homa Experience -->
+        <section id="experience" class="experience-section section-padding bg-cream" aria-label="Your Experience">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Your <span class="dynamic-homa-name"></span> Experience</h2>
+                </div>
+                <div class="experience-grid" id="experience-container">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Packages Section -->
+        <section id="packages" class="packages-section section-padding" aria-label="Packages">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Choose Your Participation</h2>
+                </div>
+                <div class="packages-grid" id="packages-container">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust & Security -->
+        <section id="trust-security" class="trust-security-section section-padding bg-cream" aria-label="Trust and Security">
+            <div class="container">
+                <div class="trust-stats reveal">
+                    <div class="stat-item">
+                        <div class="stat-value">★★★★★</div>
+                        <div class="stat-label">4.9 / 5 Rating</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="stat-devotees">3,00,000+</div>
+                        <div class="stat-label">Devotees Participated</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">98%</div>
+                        <div class="stat-label">Positive Experiences</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section id="testimonials" class="testimonials-section section-padding" aria-label="Testimonials">
+            <div class="container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Trusted by Devotees</h2>
+                </div>
+                <div class="testimonials-carousel" id="testimonials-container">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="faq-section section-padding bg-cream" aria-label="Frequently Asked Questions">
+            <div class="container faq-container">
+                <div class="section-header reveal">
+                    <h2 class="section-title">Frequently Asked Questions</h2>
+                </div>
+                <div class="faq-accordion" id="faq-container">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Final CTA -->
+        <section id="final-cta" class="final-cta-section section-padding" aria-label="Final Call to Action">
+            <div class="container">
+                <div class="cta-card reveal">
+                    <div class="cta-bg-image" id="cta-bg"></div>
+                    <div class="cta-content">
+                        <h2 class="section-title" id="cta-title">Begin With a Sacred Intention</h2>
+                        <p class="cta-subtitle" id="cta-desc"></p>
+                        <a href="#packages" class="btn btn-primary btn-large" id="cta-btn">Participate Now</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Sticky Mobile CTA -->
+    <div id="sticky-cta" class="sticky-cta hidden">
+        <div class="container">
+            <a href="#packages" class="btn btn-primary btn-full" id="sticky-btn-text">Participate Now →</a>
+        </div>
+    </div>
+
+    <!-- Error State -->
+    <div id="error-state" class="error-state hidden">
+        <div class="container">
+            <h2>Something went wrong</h2>
+            <p id="error-message">Unable to load the requested Homa details.</p>
+            <a href="index.html?homa=chandi" class="btn btn-primary">Return to Home</a>
+        </div>
+    </div>
+
+    <!-- JavaScript modules -->
+    <!-- Use type="module" so we can use imports -->
+    <script src="js/bundle.js"></script>
+</body>
+</html>

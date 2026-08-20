@@ -1,0 +1,104 @@
+/* CSS Reset */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-main);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    font-family: inherit;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+}
+
+/* Typography base */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--color-deep-brown);
+    margin-bottom: var(--space-3);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: var(--space-2);
+}
+
+.section-subtitle {
+    text-align: center;
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin: 0 auto var(--space-6) auto;
+}
+
+.overline {
+    display: block;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-primary-gold);
+    font-weight: 600;
+    margin-bottom: var(--space-2);
+}
+
+/* Layout Utilities */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-4);
+}
+
+.section-padding {
+    padding: var(--space-12) 0;
+}
+
+.bg-cream {
+    background-color: var(--color-bg-cream);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Image fallback utilities */
+.img-fallback {
+    background-color: var(--color-border-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+}

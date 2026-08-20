@@ -1,0 +1,126 @@
+/* Desktop (Max 1440px) */
+@media (max-width: 1440px) {
+    .container {
+        max-width: 1140px;
+    }
+    .hero-title {
+        font-size: 3rem;
+    }
+}
+
+/* Smaller Desktop (Max 1280px) */
+@media (max-width: 1280px) {
+    .container {
+        max-width: 960px;
+    }
+    .section-title {
+        font-size: 2.25rem;
+    }
+}
+
+/* Tablet (Max 1024px) */
+@media (max-width: 1024px) {
+    .container {
+        max-width: 720px;
+    }
+    
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .hero-meta, .hero-trust, .hero-actions {
+        justify-content: center;
+    }
+    
+    .hero-subtitle {
+        margin: 0 auto var(--space-5) auto;
+    }
+    
+    .countdown-card {
+        bottom: -3rem;
+    }
+    
+    .about-container, .temple-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .temple-visual {
+        order: -1;
+    }
+    
+    .packages-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Mobile (Max 768px) */
+@media (max-width: 768px) {
+    .container {
+        max-width: 540px;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .trust-grid {
+        gap: var(--space-3);
+    }
+    
+    .trust-item {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* Process timeline mobile vertical layout */
+    .process-timeline {
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+    
+    .process-timeline::before {
+        left: 50%;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        height: auto;
+        transform: translateX(-50%);
+    }
+    
+    .packages-grid, .benefits-grid, .experience-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Sticky CTA activation on mobile */
+    .sticky-cta {
+        display: block;
+    }
+    
+    body {
+        padding-bottom: 80px; /* Space for sticky CTA */
+    }
+    
+    #hero-cta-btn {
+        display: none; /* Hide primary CTA in hero to avoid duplication with sticky */
+    }
+    
+    .hero-actions {
+        flex-direction: column;
+    }
+}
+
+/* Small Mobile (Max 390px, 375px, 360px) */
+@media (max-width: 400px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .section-title {
+        font-size: 1.75rem;
+    }
+    
+    .time-val {
+        font-size: 1.25rem;
+    }
+}
