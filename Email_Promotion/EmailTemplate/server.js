@@ -6,7 +6,7 @@ const path = require('path');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const API_URL = import.meta.env.VITE_API_URL;
+const API_URL = process.env.VITE_API_URL || '';
 
 app.use(cors());
 app.use(express.json({ limit: '50mb' }));
