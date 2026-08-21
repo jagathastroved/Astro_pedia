@@ -76,12 +76,25 @@
             sendBtn.classList.add('opacity-75', 'cursor-not-allowed');
             statusMessage.classList.add('hidden');
 
+            let response;
+            const requestOptions = {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ toEmail, htmlContent })
+            };
+
             try {
-                const response = await fetch('http://localhost:3000/send-email', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ toEmail, htmlContent })
-                });
+                try {
+                    // First try normal relative path
+                    response = await fetch('/send-email', requestOptions);
+                    if (!response.ok && response.status === 404) {
+                        throw new Error('Endpoint not found');
+                    }
+                } catch (fallbackError) {
+                    // If it fails, fallback to absolute URL
+                    console.log("Relative path failed, falling back to absolute URL...");
+                    response = await fetch('https://astro-pedia.onrender.com/send-email', requestOptions);
+                }
 
                 const data = await response.json();
 
