@@ -32,7 +32,7 @@ app.post('/send-email', async (req, res) => {
         }
 
         const mailOptions = {
-            from: process.env.SMTP_USER,
+            from: process.env.FROM_EMAIL || process.env.SMTP_USER,
             to: toEmail,
             subject: 'Your Custom HTML Email',
             html: htmlContent
@@ -40,7 +40,7 @@ app.post('/send-email', async (req, res) => {
 
         const info = await transporter.sendMail(mailOptions);
         console.log('Message sent: %s', info.messageId);
-        
+
         res.status(200).json({ success: true, message: 'Email sent successfully!' });
     } catch (error) {
         console.error('Error sending email:', error);
