@@ -52,6 +52,22 @@ app.post("/send-email", async (req, res) => {
             controller.abort();
         }, 15000);
 
+        // Parse multiple emails separated by commas or spaces
+        const emailList = toEmail.split(/[\s,]+/).filter(e => {
+            e = e.trim();
+            // Basic regex to ensure valid email structure
+            return e.length > 0 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+        });
+        
+        if (emailList.length === 0) {
+            return res.status(400).json({
+                success: false,
+                message: "No valid email addresses provided in the recipient list.",
+            });
+        }
+        
+        const toArray = emailList.map(email => ({ email: email.trim() }));
+
         const response = await fetch(
             "https://api.brevo.com/v3/smtp/email",
             {
@@ -66,11 +82,7 @@ app.post("/send-email", async (req, res) => {
                         name: "AstroVed",
                         email: process.env.FROM_EMAIL,
                     },
-                    to: [
-                        {
-                            email: toEmail,
-                        },
-                    ],
+                    to: toArray,
                     subject: "Your Custom HTML Email",
                     htmlContent: htmlContent,
                 }),

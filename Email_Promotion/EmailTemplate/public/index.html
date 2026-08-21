@@ -26,11 +26,16 @@
             <form id="emailForm" class="space-y-6">
 
                 <div>
-                    <label for="toEmail" class="block text-sm font-semibold text-slate-700 mb-2">Recipient Email
-                        Address</label>
-                    <input type="email" id="toEmail" name="toEmail" required
-                        class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-colors shadow-sm text-slate-700"
-                        placeholder="e.g., user@example.com">
+                    <label class="block text-sm font-semibold text-slate-700 mb-2">Recipient Email Address(es)</label>
+                    <div id="emailTagsContainer"
+                        class="w-full min-h-[50px] px-2 py-2 rounded-lg border border-slate-300 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:border-indigo-500 transition-colors shadow-sm bg-white flex flex-wrap gap-2 items-center cursor-text">
+                        <!-- Tags will go here -->
+                        <input type="text" id="emailTagInput"
+                            class="flex-1 min-w-[200px] outline-none border-none bg-transparent text-sm p-1 text-slate-700"
+                            placeholder="Type email and press Space...">
+                    </div>
+                    <p id="emailErrorMsg" class="hidden text-sm font-medium text-red-500 mt-1">Please enter a valid email address.</p>
+                    <input type="hidden" id="toEmail" name="toEmail" required>
                 </div>
 
                 <div>
@@ -63,10 +68,100 @@
         const sendBtn = document.getElementById('sendBtn');
         const statusMessage = document.getElementById('statusMessage');
 
+        // Email Tags Logic
+        const emailTagsContainer = document.getElementById('emailTagsContainer');
+        const emailTagInput = document.getElementById('emailTagInput');
+        const hiddenToEmail = document.getElementById('toEmail');
+        const emailErrorMsg = document.getElementById('emailErrorMsg');
+        let emails = [];
+
+        function renderTags() {
+            const tags = emailTagsContainer.querySelectorAll('.email-tag');
+            tags.forEach(tag => tag.remove());
+
+            emails.forEach((email, index) => {
+                const tag = document.createElement('span');
+                tag.className = 'email-tag inline-flex items-center max-w-full gap-1 px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full text-sm font-medium shadow-sm';
+                tag.innerHTML = `
+                    <span class="truncate">${email}</span>
+                    <button type="button" class="text-indigo-400 hover:text-indigo-800 transition-colors focus:outline-none ml-1 text-lg leading-none shrink-0" onclick="removeEmail(${index})">
+                        &times;
+                    </button>
+                `;
+                emailTagsContainer.insertBefore(tag, emailTagInput);
+            });
+            hiddenToEmail.value = emails.join(',');
+        }
+
+        window.removeEmail = function (index) {
+            emails.splice(index, 1);
+            renderTags();
+        }
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function addEmail(value) {
+            const parsed = value.split(/[\s,]+/).filter(e => e.trim().length > 0);
+            const validEmails = [];
+            const invalidEmails = [];
+
+            parsed.forEach(e => {
+                if (validateEmail(e)) {
+                    validEmails.push(e);
+                } else {
+                    invalidEmails.push(e);
+                }
+            });
+
+            if (validEmails.length > 0) {
+                emails = [...new Set([...emails, ...validEmails])];
+                renderTags();
+            }
+
+            // Leave invalid text in the input box so the user can fix it
+            emailTagInput.value = invalidEmails.join(' ');
+
+            // Show error state indefinitely until they type again
+            if (invalidEmails.length > 0) {
+                emailTagsContainer.classList.add('border-red-500', 'ring-red-500');
+                emailErrorMsg.classList.remove('hidden');
+            }
+        }
+
+        // Remove error state as soon as the user starts typing to correct it
+        emailTagInput.addEventListener('input', () => {
+            emailTagsContainer.classList.remove('border-red-500', 'ring-red-500');
+            emailErrorMsg.classList.add('hidden');
+        });
+
+        emailTagInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ' || e.key === ',') {
+                e.preventDefault();
+                addEmail(e.target.value);
+            } else if (e.key === 'Backspace' && e.target.value === '' && emails.length > 0) {
+                emails.pop();
+                renderTags();
+            }
+        });
+
+        emailTagInput.addEventListener('blur', (e) => {
+            addEmail(e.target.value);
+        });
+
+        emailTagsContainer.addEventListener('click', () => {
+            emailTagInput.focus();
+        });
+
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
 
-            const toEmail = document.getElementById('toEmail').value;
+            // Catch any lingering text in the input box before submit
+            addEmail(emailTagInput.value);
+
+            const toEmail = hiddenToEmail.value;
             const htmlContent = document.getElementById('htmlContent').value;
 
             // UI Loading state
@@ -84,7 +179,18 @@
             };
 
             try {
-                response = await fetch('/send-email', requestOptions);
+                try {
+                    // First try localhost as requested
+                    response = await fetch('http://localhost:3000/send-email', requestOptions);
+                    if (!response.ok && response.status === 404) {
+                        throw new Error('Endpoint not found');
+                    }
+                } catch (fallbackError) {
+                    // If it fails, fallback to absolute URL
+                    console.log("Localhost failed, falling back to absolute URL...");
+                    response = await fetch('https://astro-pedia.onrender.com/send-email', requestOptions);
+                }
+
                 const data = await response.json();
 
                 statusMessage.classList.remove('hidden', 'bg-red-50', 'text-red-700');
